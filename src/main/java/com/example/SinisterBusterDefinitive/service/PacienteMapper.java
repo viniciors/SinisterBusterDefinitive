@@ -15,7 +15,6 @@ public class PacienteMapper {
         paciente.setCpf(pacienteRequestDTO.cpf());
         paciente.setDataNascimento(pacienteRequestDTO.dataNascimento());
         paciente.setPlanoSaude(pacienteRequestDTO.planoSaude());
-        paciente.setConsultas(pacienteRequestDTO.consultas());
         return paciente;
     }
 
@@ -25,8 +24,7 @@ public class PacienteMapper {
                 paciente.getNome(),
                 paciente.getCpf(),
                 paciente.getDataNascimento(),
-                paciente.getPlanoSaude(),
-                paciente.getConsultas()
+                paciente.getPlanoSaude()
         );
     }
 }

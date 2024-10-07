@@ -1,10 +1,13 @@
 package com.example.SinisterBusterDefinitive.controller;
 
+import com.example.SinisterBusterDefinitive.dto.ConsultaResponseDTO;
 import com.example.SinisterBusterDefinitive.dto.DentistaRequestDTO;
 import com.example.SinisterBusterDefinitive.dto.DentistaResponseDTO;
+import com.example.SinisterBusterDefinitive.model.Consulta;
 import com.example.SinisterBusterDefinitive.model.Dentista;
+import com.example.SinisterBusterDefinitive.repository.ConsultaRepository;
 import com.example.SinisterBusterDefinitive.repository.DentistaRepository;
-import com.example.SinisterBusterDefinitive.repository.PacienteRepository;
+import com.example.SinisterBusterDefinitive.service.ConsultaMapper;
 import com.example.SinisterBusterDefinitive.service.DentistaMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,10 +29,16 @@ import java.util.List;
 public class DentistaController {
     @Autowired
     private DentistaRepository dentistaRepository;
+
     @Autowired
     private DentistaMapper dentistaMapper;
+
     @Autowired
-    private PacienteRepository pacienteRepository;
+    private ConsultaRepository consultaRepository;
+
+    @Autowired
+    private ConsultaMapper consultaMapper;
+
 
     @Operation(summary = "Cria um dentista e grava no banco.")
     @ApiResponses(value = {
@@ -75,6 +84,24 @@ public class DentistaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
+    // GET (consultas de um dentista específico)
+    @Operation(summary = "Busca todas as consultas associadas a um dentista específico.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Consultas encontradas com sucesso."),
+            @ApiResponse(responseCode = "400", description = "Nenhuma consulta encontrada para esse dentista.",
+            content = @Content(schema = @Schema()))
+    })
+    @GetMapping("/dentistas/{id}/consultas")
+    public ResponseEntity<List<ConsultaResponseDTO>> getConsultasPorDentista(@PathVariable Long id) {
+        List<Consulta> consultas = consultaRepository.findByDentistaIdDentista(id);
+        List<ConsultaResponseDTO> consultasResponse = consultas.stream()
+                .map(consultaMapper::consultaToResponse)
+                .toList();
+        return ResponseEntity.ok(consultasResponse);
+    }
+
+
     //PUT (atualizar informações de um dentista cadastrado)
     @Operation(summary = "Atualiza informações de um dentista.")
     @ApiResponses(value = {
@@ -88,7 +115,6 @@ public class DentistaController {
             dentista.setNomeDentista(dentistaRequestDTO.nomeDentista());
             dentista.setCro(dentistaRequestDTO.cro());
             dentista.setEspecialidade(dentistaRequestDTO.especialidade());
-            dentista.setConsultas(dentistaRequestDTO.consultas());
             Dentista dentistaAtualizado = dentistaRepository.save(dentista);
             return ResponseEntity.ok(dentistaMapper.dentistaToResponse(dentistaAtualizado));
         }).orElse(ResponseEntity.notFound().build());

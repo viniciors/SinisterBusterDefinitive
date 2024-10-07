@@ -20,8 +20,6 @@ public class Dentista {
     @Column(name = "especialidade")
     private String especialidade;
 
-    @OneToMany(mappedBy = "dentista", fetch = FetchType.LAZY)
-    private List<Consulta> consultas;
 
     public Long getIdDentista() {
         return idDentista;
@@ -55,13 +53,7 @@ public class Dentista {
         this.especialidade = especialidade;
     }
 
-    public List<Consulta> getConsultas() {
-        return consultas;
-    }
 
-    public void setConsultas(List<Consulta> consultas) {
-        this.consultas = consultas;
-    }
 }
 
 

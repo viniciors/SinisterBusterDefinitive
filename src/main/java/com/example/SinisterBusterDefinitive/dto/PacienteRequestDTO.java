@@ -1,18 +1,13 @@
 package com.example.SinisterBusterDefinitive.dto;
 
-import com.example.SinisterBusterDefinitive.model.Consulta;
 import com.example.SinisterBusterDefinitive.model.Plano;
-
-import java.util.List;
 
 
 public record PacienteRequestDTO(
         String nome,
         String cpf,
         String dataNascimento,
-        Plano planoSaude,
-        List<Consulta> consultas
-
+        Plano planoSaude
 
 ) {
     @Override
@@ -35,8 +30,4 @@ public record PacienteRequestDTO(
         return planoSaude;
     }
 
-    @Override
-    public List<Consulta> consultas() {
-        return consultas;
-    }
 }

@@ -7,8 +7,7 @@ import java.util.List;
 public record DentistaRequestDTO(
         String nomeDentista,
         String cro,
-        String especialidade,
-        List<Consulta> consultas
+        String especialidade
 ) {
     @Override
     public String nomeDentista() {
@@ -23,10 +22,5 @@ public record DentistaRequestDTO(
     @Override
     public String especialidade() {
         return especialidade;
-    }
-
-    @Override
-    public List<Consulta> consultas(){
-        return consultas;
     }
 }

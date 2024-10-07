@@ -24,8 +24,6 @@ public class Paciente {
     @Column(name = "plano_saude")
     private Plano planoSaude;
 
-    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
-    private List<Consulta> consultas;
 
 
     public Long getIdPaciente() {
@@ -66,13 +64,5 @@ public class Paciente {
 
     public void setPlanoSaude(Plano planoSaude) {
         this.planoSaude = planoSaude;
-    }
-
-    public List<Consulta> getConsultas() {
-        return consultas;
-    }
-
-    public void setConsultas(List<Consulta> consultas) {
-        this.consultas = consultas;
     }
 }
