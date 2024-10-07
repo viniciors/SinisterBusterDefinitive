@@ -92,7 +92,7 @@ public class DentistaController {
             @ApiResponse(responseCode = "400", description = "Nenhuma consulta encontrada para esse dentista.",
             content = @Content(schema = @Schema()))
     })
-    @GetMapping("/dentistas/{id}/consultas")
+    @GetMapping("/{id}/consultas")
     public ResponseEntity<List<ConsultaResponseDTO>> getConsultasPorDentista(@PathVariable Long id) {
         List<Consulta> consultas = consultaRepository.findByDentistaIdDentista(id);
         List<ConsultaResponseDTO> consultasResponse = consultas.stream()
