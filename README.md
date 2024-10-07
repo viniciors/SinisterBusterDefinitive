@@ -55,6 +55,8 @@ Clique [aqui](https://www.youtube.com/watch?v=IV0yVdgiT-4) para acessar o vídeo
 
 ## 3.6 Listagem de Endpoints (Documentação da API)
 
+#### Algumas requisições podem ser encontradas na pasta [postman-api-tests](postman-api-tests/ODONTOPREV.postman_collection.json) do repositório.
+
 ### Pacientes
 - **GET /pacientes** - Lista todos os pacientes
 - **GET /pacientes/{id}** - Busca um paciente pelo ID
