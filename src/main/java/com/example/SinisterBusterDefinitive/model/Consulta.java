@@ -1,8 +1,13 @@
 package com.example.SinisterBusterDefinitive.model;
 
 import jakarta.persistence.*;
-import java.util.List;
+import lombok.*;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
+@ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "CH_CONSULTAS")
 public class Consulta {
@@ -25,44 +30,4 @@ public class Consulta {
     @Column(name = "custo_consulta")
     private Double custoConsulta;
 
-
-    public Long getIdConsulta() {
-        return idConsulta;
-    }
-
-    public void setIdConsulta(Long idConsulta) {
-        this.idConsulta = idConsulta;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Dentista getDentista() {
-        return dentista;
-    }
-
-    public void setDentista(Dentista dentista) {
-        this.dentista = dentista;
-    }
-
-    public String getDataConsulta() {
-        return dataConsulta;
-    }
-
-    public void setDataConsulta(String dataConsulta) {
-        this.dataConsulta = dataConsulta;
-    }
-
-    public Double getCustoConsulta() {
-        return custoConsulta;
-    }
-
-    public void setCustoConsulta(Double custoConsulta) {
-        this.custoConsulta = custoConsulta;
-    }
 }

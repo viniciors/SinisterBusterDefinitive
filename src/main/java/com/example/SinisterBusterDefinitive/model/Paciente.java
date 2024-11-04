@@ -1,8 +1,13 @@
 package com.example.SinisterBusterDefinitive.model;
 
 import jakarta.persistence.*;
-import java.util.List;
+import lombok.*;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
+@ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "CH_PACIENTES")
 public class Paciente {
@@ -24,45 +29,4 @@ public class Paciente {
     @Column(name = "plano_saude")
     private Plano planoSaude;
 
-
-
-    public Long getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(Long idPaciente) {
-        this.idPaciente = idPaciente;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public Plano getPlanoSaude() {
-        return planoSaude;
-    }
-
-    public void setPlanoSaude(Plano planoSaude) {
-        this.planoSaude = planoSaude;
-    }
 }
