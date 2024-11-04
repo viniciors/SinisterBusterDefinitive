@@ -1,4 +1,7 @@
 package com.example.SinisterBusterDefinitive.repository;
 
-public interface SinistroRepository {
+import com.example.SinisterBusterDefinitive.model.Sinistro;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SinistroRepository extends JpaRepository<Sinistro, Long> {
 }
