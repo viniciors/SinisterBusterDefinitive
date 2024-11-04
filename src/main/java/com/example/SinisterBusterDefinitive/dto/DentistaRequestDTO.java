@@ -1,8 +1,5 @@
 package com.example.SinisterBusterDefinitive.dto;
 
-import com.example.SinisterBusterDefinitive.model.Consulta;
-
-import java.util.List;
 
 public record DentistaRequestDTO(
         String nomeDentista,
