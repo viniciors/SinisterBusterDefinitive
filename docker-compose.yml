@@ -12,8 +12,8 @@ services:
     environment:
       SPRING_APPLICATION_NAME: "SinisterBusterDefinitive"
       SPRING_DATASOURCE_URL: "jdbc:oracle:thin:@//oracle.fiap.com.br:1521/ORCL"
-      SPRING_DATASOURCE_USERNAME: "rm552752"
-      SPRING_DATASOURCE_PASSWORD: "110900"
+      SPRING_DATASOURCE_USERNAME: "rm553813"
+      SPRING_DATASOURCE_PASSWORD: "050496"
     networks:
       - app-network
     deploy:
