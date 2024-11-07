@@ -109,3 +109,59 @@ Clique [aqui](https://www.youtube.com/watch?v=IV0yVdgiT-4) para acessar o vídeo
 - **PUT /consultas/{id}** - Atualiza as informações de uma consulta
 - **DELETE /consultas/{id}** - Remove uma consulta
 
+## Como Usar Docker e Docker Compose
+
+### Pré-requisitos
+
+- **Docker**: Instale o Docker em sua máquina ([Instruções](https://www.docker.com/get-started))
+- **Docker Compose**: Geralmente incluído no Docker Desktop ([Instruções](https://docs.docker.com/compose/install/))
+
+### Passos para Instalação e Execução
+
+1. **Clonar o repositório**:
+
+   ```bash
+   git clone <URL_DO_REPOSITORIO>
+   cd <NOME_DO_DIRETORIO_DO_PROJETO>
+   ```
+
+2. **Construir e Iniciar os Containers**:
+
+   No diretório raiz do projeto, execute:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+   Este comando:
+- Constrói a imagem da aplicação conforme definido no `Dockerfile`
+- Inicia os serviços configurados no `docker-compose.yml`, incluindo o Oracle Database
+
+3. **Acessar a Aplicação**:
+
+- Acesse a aplicação em [http://localhost:8080](http://localhost:8080)
+- O banco de dados Oracle estará disponível na porta `1521`
+
+4. **Parar e Remover Containers**:
+
+   Para encerrar e remover os containers, utilize:
+
+   ```bash
+   docker-compose down
+   ```
+
+### Variáveis de Ambiente
+
+As variáveis para conexão com o banco de dados Oracle estão configuradas no `docker-compose.yml`. Se precisar, ajuste:
+
+- `SPRING_DATASOURCE_URL`: URL de conexão JDBC
+- `SPRING_DATASOURCE_USERNAME`: Usuário do banco de dados
+- `SPRING_DATASOURCE_PASSWORD`: Senha do banco de dados
+
+Essas variáveis podem ser ajustadas diretamente no `docker-compose.yml` ou configuradas em um arquivo `.env`.
+
+### Persistência de Dados
+
+O volume `oracle-data` garante a persistência dos dados, ou seja, os dados são mantidos mesmo que o container seja removido.
+
+Agora você está pronto para rodar a aplicação com Docker! Basta seguir esses passos para iniciar ou reiniciar o ambiente conforme necessário.
