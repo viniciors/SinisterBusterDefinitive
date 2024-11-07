@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  sinisterbuster:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - oracle-db
+    environment:
+      SPRING_APPLICATION_NAME: "SinisterBusterDefinitive"
+      SPRING_DATASOURCE_URL: "jdbc:oracle:thin:@//oracle.fiap.com.br:1521/ORCL"
+      SPRING_DATASOURCE_USERNAME: "rm552752"
+      SPRING_DATASOURCE_PASSWORD: "110900"
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+
+  oracle-db:
+    image: oracleinanutshell/oracle-xe-11g:latest
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_ALLOW_REMOTE: "true"
+      ORACLE_PASSWORD: "110900"
+    volumes:
+      - oracle-data:/u01/app/oracle
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - sinisterbuster
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  oracle-data:

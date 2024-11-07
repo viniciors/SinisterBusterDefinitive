@@ -108,3 +108,4 @@ Clique [aqui](https://www.youtube.com/watch?v=IV0yVdgiT-4) para acessar o vídeo
   ```
 - **PUT /consultas/{id}** - Atualiza as informações de uma consulta
 - **DELETE /consultas/{id}** - Remove uma consulta
+
